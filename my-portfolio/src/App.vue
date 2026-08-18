@@ -294,7 +294,7 @@
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-date">
-              2024 – Present
+              2024 – 2026
             </div>
             <div class="timeline-title">
               CFC Informaticienne — CPNV
