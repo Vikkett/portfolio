@@ -144,8 +144,6 @@
           </div>
         </a>
 
-        
-
         <a href="/portfolio/construction/html/index.html" class="project-card">
           <span class="project-tag">
             Live · Client Work
