@@ -1,0 +1,274 @@
+/* ============================================================
+   SERVICES PAGE — matches index redesign
+   ============================================================ */
+
+   @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,900&family=Inter:wght@400;500;600&display=swap');
+
+   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+   
+   :root {
+     --void:   #0B0F1A;
+     --steel:  #1C2236;
+     --gold:   #F7B500;
+     --ember:  #FF6B1A;
+     --cream:  #E8E0D0;
+     --white:  #FFFFFF;
+     --text-dim: #9AA3B8;
+   }
+   
+   html { scroll-behavior: smooth; }
+   
+   body {
+     font-family: 'Inter', Arial, sans-serif;
+     background-color: var(--void);
+     color: var(--cream);
+     overflow-x: hidden;
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+   }
+   
+   /* ── NAV ── */
+   .nav-bar {
+     position: sticky;
+     top: 0;
+     z-index: 100;
+     background: rgba(11,15,26,0.85);
+     backdrop-filter: blur(16px);
+     -webkit-backdrop-filter: blur(16px);
+     border-bottom: 1px solid rgba(247,181,0,0.2);
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 0.9rem 2.5rem;
+   }
+   
+   .logo {
+     font-family: 'Barlow Condensed', sans-serif;
+     font-weight: 900;
+     font-size: 1.35rem;
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+     background: linear-gradient(90deg, var(--gold), var(--ember));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+   }
+   
+   .nav-links a {
+     color: var(--text-dim);
+     text-decoration: none;
+     margin-left: 2rem;
+     font-size: 0.9rem;
+     font-weight: 600;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     transition: color 0.25s;
+   }
+   
+   .nav-links a.active,
+   .nav-links a:hover { color: var(--gold); }
+   
+   /* ── MAIN ── */
+   main { flex: 1; }
+   
+   .container {
+     padding: 4rem 2rem 6rem;
+     max-width: 1400px;
+     margin: 0 auto;
+   }
+   
+   /* ── TITLE ── */
+   .gallery-title {
+     font-family: 'Barlow Condensed', sans-serif;
+     font-weight: 900;
+     font-size: clamp(3rem, 7vw, 5.5rem);
+     text-transform: uppercase;
+     letter-spacing: -0.01em;
+     color: var(--white);
+     text-shadow:
+       2px 2px 0 #c49200,
+       4px 4px 0 #9a7100,
+       6px 6px 0 #6e5100,
+       8px 8px 14px rgba(0,0,0,0.7);
+     margin-bottom: 0.4rem;
+     line-height: 1;
+   }
+   
+   .gallery-subtitle {
+     color: var(--text-dim);
+     font-size: 1rem;
+     margin-bottom: 2.5rem;
+     letter-spacing: 0.04em;
+   }
+   
+   /* ── HORIZONTAL SCROLL GALLERY ── */
+   .horizontal-gallery {
+     position: relative;
+   }
+   
+   /* fade edges */
+   .horizontal-gallery::before,
+   .horizontal-gallery::after {
+     content: '';
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     width: 80px;
+     z-index: 2;
+     pointer-events: none;
+   }
+   
+   .horizontal-gallery::before {
+     left: 0;
+     background: linear-gradient(to right, var(--void), transparent);
+   }
+   
+   .horizontal-gallery::after {
+     right: 0;
+     background: linear-gradient(to left, var(--void), transparent);
+   }
+   
+   .scroll-container {
+     display: flex;
+     gap: 1rem;
+     overflow-x: auto;
+     padding: 1.5rem 1rem 2rem;
+     scroll-snap-type: x mandatory;
+     -webkit-overflow-scrolling: touch;
+     cursor: grab;
+   }
+   
+   .scroll-container:active { cursor: grabbing; }
+   
+   /* hide scrollbar visually but keep functional */
+   .scroll-container::-webkit-scrollbar { height: 6px; }
+   .scroll-container::-webkit-scrollbar-track { background: var(--steel); border-radius: 3px; }
+   .scroll-container::-webkit-scrollbar-thumb {
+     background: linear-gradient(90deg, var(--gold), var(--ember));
+     border-radius: 3px;
+   }
+   
+   .scroll-container img {
+     flex-shrink: 0;
+     width: 280px;
+     height: 200px;
+     object-fit: cover;
+     border-radius: 10px;
+     border: 1px solid rgba(255,255,255,0.06);
+     cursor: pointer;
+     scroll-snap-align: start;
+     /* 3D lift */
+     box-shadow:
+       0 4px 12px rgba(0,0,0,0.5),
+       0 0 0 0 var(--gold);
+     transition:
+       transform 0.25s cubic-bezier(.22,1,.36,1),
+       box-shadow 0.25s,
+       border-color 0.25s;
+   }
+   
+   .scroll-container img:hover {
+     transform: scale(1.06) translateY(-6px) rotateX(4deg);
+     border-color: var(--gold);
+     box-shadow:
+       0 16px 40px rgba(0,0,0,0.6),
+       0 0 0 2px var(--gold),
+       0 0 28px rgba(247,181,0,0.28);
+     z-index: 3;
+     position: relative;
+   }
+   
+   /* ── DRAG-TO-SCROLL ── */
+   
+   /* ── FOOTER ── */
+   footer {
+     background: var(--steel);
+     border-top: 1px solid rgba(247,181,0,0.15);
+     color: var(--text-dim);
+     padding: 1.5rem 2rem;
+     text-align: center;
+     font-size: 0.85rem;
+     letter-spacing: 0.05em;
+   }
+   
+   footer span { color: var(--gold); }
+   
+   /* ── LIGHTBOX ── */
+   #lightbox {
+     position: fixed;
+     inset: 0;
+     display: none;
+     align-items: center;
+     justify-content: center;
+     z-index: 9999;
+   }
+   
+   .lightbox-visible { display: flex !important; }
+   
+   .lightbox-overlay {
+     position: absolute;
+     inset: 0;
+     background: rgba(5,8,18,0.92);
+     backdrop-filter: blur(6px);
+     cursor: pointer;
+   }
+   
+   .lightbox-content {
+     position: relative;
+     z-index: 10000;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     max-width: 92%;
+     padding: 1rem;
+   }
+   
+   .lightbox-content img {
+     max-width: 720px;
+     max-height: 78vh;
+     width: auto;
+     height: auto;
+     border-radius: 10px;
+     border: 2px solid rgba(247,181,0,0.5);
+     box-shadow:
+       0 0 60px rgba(247,181,0,0.22),
+       0 30px 80px rgba(0,0,0,0.8);
+   }
+   
+   .lightbox-caption {
+     margin-top: 0.8rem;
+     color: var(--gold);
+     font-size: 0.9rem;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     text-align: center;
+   }
+   
+   #lightbox-close {
+     position: absolute;
+     top: -2.4rem;
+     right: 0;
+     font-size: 2.6rem;
+     color: var(--gold);
+     cursor: pointer;
+     user-select: none;
+     line-height: 1;
+     transition: color 0.2s, transform 0.2s;
+   }
+   
+   #lightbox-close:hover {
+     color: var(--ember);
+     transform: rotate(90deg);
+   }
+   
+   /* ── RESPONSIVE ── */
+   @media (max-width: 768px) {
+     .container { padding: 2.5rem 1rem 4rem; }
+     .nav-bar { padding: 0.8rem 1.2rem; }
+     .scroll-container img { width: 220px; height: 160px; }
+   }
+   
+   @media (prefers-reduced-motion: reduce) {
+     * { transition: none !important; }
+   }

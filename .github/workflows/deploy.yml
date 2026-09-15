@@ -37,10 +37,6 @@ jobs:
         working-directory: ./my-portfolio
         run: npm run build
 
-      # Add this step to disable Jekyll build processing
-      - name: Add .nojekyll file
-        run: touch ./my-portfolio/dist/.nojekyll
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

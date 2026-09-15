@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Mille et une petites choses</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/contact.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="nav-bar">
+      <div class="logo">Mille et une petites choses</div>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <h1 class="contact-title">Contactez-moi</h1>
+    <p class="contact-eyebrow">
+      Un projet ? Une réparation urgente ? Écrivez-moi et je vous réponds rapidement.
+    </p>
+
+    <section class="contact-section">
+      <form action="https://formspree.io/f/meozoynw" method="POST" class="contact-form">
+
+        <div>
+          <label for="email">Votre Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="vous@exemple.com"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="message">Votre Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="7"
+            placeholder="Décrivez votre projet ou votre besoin..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          Envoyer le message →
+        </button>
+
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 <span>Construction Fiable</span> &amp; Services à Domicile — Tous droits réservés.
+  </footer>
+
+</body>
+</html>

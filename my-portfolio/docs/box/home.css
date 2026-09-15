@@ -1,0 +1,664 @@
+/* ================================================================
+   ШРИФТЫ
+   ================================================================ */
+
+   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
+   /* Подключаем 2 шрифта с Google Fonts:
+      - Anton — жирный "плакатный" шрифт для заголовков
+      - Inter — обычный шрифт для основного текста (несколько толщин: 400-800) */
+   
+   
+   /* ================================================================
+      ПЕРЕМЕННЫЕ (ЦВЕТА САЙТА)
+      ================================================================ */
+   
+   :root{
+     /* :root — это "корень" документа. Переменные, объявленные здесь,
+        можно использовать в любом месте CSS через var(--имя) */
+     --black: #0a0a0a;        /* основной чёрный фон */
+     --black-2: #141414;      /* чуть более светлый чёрный (для секций) */
+     --red: #b5121b;          /* тёмно-красный (акцент, рамки) */
+     --red-bright: #e8202c;   /* яркий красный (кнопки, выделения) */
+     --cream: #f2ede4;        /* кремовый/светлый — основной цвет текста */
+     --grey: #8a8580;         /* серый (сейчас нигде не используется) */
+   }
+   /* Плюс этого подхода: если нужно поменять фирменный красный цвет —
+      меняем ОДНУ строку --red-bright, и он поменяется везде на сайте */
+   
+   
+   /* ================================================================
+      СБРОС БАЗОВЫХ СТИЛЕЙ БРАУЗЕРА
+      ================================================================ */
+   
+   *{
+     margin:0;
+     padding:0;
+     box-sizing:border-box;
+     /* Убирает стандартные отступы браузера у ВСЕХ элементов (*)
+        и делает так, чтобы ширина/высота считались вместе с рамкой и
+        внутренними отступами (это стандартная практика в вёрстке) */
+   }
+   
+   html{
+     scroll-behavior:smooth;
+     /* Плавная прокрутка при клике на ссылки-якоря (#about, #coach и т.д.) */
+   }
+   
+   body{
+     background: var(--black);
+     color: var(--cream);
+     font-family: 'Inter', sans-serif;
+     overflow-x: hidden;
+     /* Чёрный фон, светлый текст, основной шрифт Inter.
+        overflow-x:hidden — прячет горизontальную прокрутку
+        (защита от "выезжающих" декоративных элементов) */
+   }
+   
+   .display{
+     font-family: 'Anton', sans-serif;
+     text-transform: uppercase;
+     letter-spacing: 0.01em;
+     /* Класс для всех крупных заголовков: шрифт Anton, ВСЕ БУКВЫ ЗАГЛАВНЫЕ */
+   }
+   
+   a{
+     color: inherit;
+     text-decoration: none;
+     /* Ссылки наследуют цвет окружающего текста и не подчёркиваются */
+   }
+   
+   
+   /* ================================================================
+      ДЕКОРАТИВНАЯ "ЛЕНТА" (сейчас не используется в HTML, заготовка)
+      ================================================================ */
+   
+   .tape{
+     position: relative;
+   }
+   .tape::before{
+     content:'';
+     position:absolute;
+     background: var(--red);
+     transform: skewY(-3deg);
+     /* Создаёт скошенную (диагональную) красную полосу-подложку */
+   }
+   
+   
+   /* ================================================================
+      МЕНЮ (NAV)
+      ================================================================ */
+   
+   nav{
+     position: fixed;      /* меню "прилипает" к верху при прокрутке страницы */
+     top:0; left:0; right:0;
+     z-index: 50;           /* меню всегда поверх остального контента */
+     display:flex;
+     align-items:center;
+     justify-content: space-between;  /* логотип слева, ссылки/кнопка справа */
+     padding: 18px 6vw;     /* 6vw = 6% от ширины экрана — отступы адаптивны */
+     background: rgba(10,10,10,0.85); /* полупрозрачный чёрный фон */
+     backdrop-filter: blur(6px);      /* размытие фона под меню (эффект стекла) */
+     border-bottom: 1px solid rgba(232,32,44,0.25); /* тонкая красная линия снизу */
+   }
+   
+   nav .brand{
+     display:flex;
+     align-items:center;
+     gap:10px;
+     font-size: 1.1rem;
+     letter-spacing: 0.04em;
+     /* Блок с логотипом: картинка + текст в один ряд */
+   }
+   
+   nav .brand img{
+     height: 38px; width:38px;
+     border-radius:50%;     /* делает логотип круглым */
+     object-fit:cover;      /* картинка обрезается, но не искажается */
+   }
+   
+   nav .links{
+     display:flex;
+     gap: 28px;
+     font-size: 0.85rem;
+     font-weight:600;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     /* Ссылки меню (Le Club / Entraîneur / Contact) в ряд, заглавными буквами */
+   }
+   
+   nav .links a{
+     opacity:0.75;
+     transition: opacity .2s, color .2s;
+     border-bottom: 2px solid transparent;
+     padding-bottom: 4px;
+     /* Ссылки слегка прозрачные, при наведении становятся ярче (см. ниже) */
+   }
+   
+   nav .links a:hover{
+     opacity:1;
+     color: var(--red-bright);
+     /* При наведении мышкой: ссылка становится полностью видимой и красной */
+   }
+   
+   @media (max-width:720px){
+     nav .links{ display:none; }
+     /* На экранах уже 720px (телефоны) меню-ссылки скрываются полностью.
+        Кнопка WhatsApp при этом остаётся видна */
+   }
+   
+   
+   /* ================================================================
+      ГЛАВНЫЙ ЭКРАН (HERO)
+      ================================================================ */
+   
+   header.hero{
+     position: relative;
+     min-height: 100svh;    /* высота = высота экрана (svh = "safe viewport height",
+                                корректно работает на мобильных с адресной строкой) */
+     display:flex;
+     align-items:center;    /* контент по центру по вертикали */
+     padding: 120px 6vw 80px;
+     background:
+       radial-gradient(ellipse 900px 500px at 85% 15%, rgba(181,18,27,0.35), transparent 60%),
+       var(--black);
+     /* Фон = чёрный + красное "свечение" в правом верхнем углу (радиальный градиент) */
+   }
+   
+   .hero-slash{
+     position:absolute;
+     top:-10%; right:-15%;
+     width:70%; height:130%;
+     background: linear-gradient(135deg, var(--red) 0%, #7a0d13 100%);
+     clip-path: polygon(35% 0, 100% 0, 65% 100%, 0% 100%);
+     opacity: 0.9;
+     z-index:0;
+     /* Большая красная диагональная фигура справа на фоне (эффект "разреза").
+        clip-path вырезает из прямоугольника нужную неровную форму */
+   }
+   
+   .hero-slash::after{
+     content:'';
+     position:absolute; inset:0;
+     background-image: repeating-linear-gradient(115deg, rgba(0,0,0,0.15) 0 2px, transparent 2px 40px);
+     /* Тонкие диагональные полосы-текстура поверх красной фигуры */
+   }
+   
+   .hero-inner{
+     position:relative;
+     z-index:2;              /* текст поверх декоративной красной фигуры */
+     max-width: 680px;       /* текст не растягивается на всю ширину экрана */
+   }
+   
+   .eyebrow{
+     display:inline-flex;
+     align-items:center;
+     gap:10px;
+     font-size:0.78rem;
+     font-weight:700;
+     letter-spacing:0.18em;
+     text-transform:uppercase;
+     color: var(--red-bright);
+     margin-bottom: 22px;
+     /* Маленькая надпись над заголовком: "Grand Lausanne · Groupe & Individuel" */
+   }
+   
+   .eyebrow::before{
+     content:'';
+     width:26px; height:2px;
+     background: var(--red-bright);
+     /* Короткая красная чёрточка слева от текста eyebrow */
+   }
+   
+   h1.display{
+     font-size: clamp(3rem, 8vw, 6.2rem);
+     /* clamp(мин, желаемый, макс) — размер текста автоматически подстраивается
+        под ширину экрана, но не меньше 3rem и не больше 6.2rem */
+     line-height: 0.92;      /* плотный межстрочный интервал для крупного заголовка */
+     color: var(--cream);
+   }
+   
+   h1.display .accent{
+     color: var(--red-bright);
+     /* Слово "boxing" в заголовке выделено красным */
+   }
+   
+   .hero-sub{
+     margin-top: 26px;
+     font-size: 1.1rem;
+     color: rgba(242,237,228,0.75);  /* кремовый, но полупрозрачный (мягче основного) */
+     max-width: 480px;
+     line-height:1.6;
+   }
+   
+   .hero-cta{
+     margin-top: 38px;
+     display:flex;
+     gap:16px;
+     flex-wrap:wrap;         /* на узких экранах кнопки переносятся на новую строку */
+   }
+   
+   .btn{
+     display:inline-flex;
+     align-items:center;
+     gap:10px;
+     padding: 15px 28px;
+     font-weight:700;
+     font-size:0.85rem;
+     letter-spacing:0.08em;
+     text-transform:uppercase;
+     border-radius: 2px;
+     transition: transform .15s ease, box-shadow .15s ease;
+     /* Общий стиль для всех кнопок сайта */
+   }
+   
+   .btn-primary{
+     background: var(--red-bright);
+     color: #fff;
+     box-shadow: 0 6px 0 #7a0d13;
+     /* Красная кнопка с "объёмной" тенью снизу (эффект нажимаемой кнопки) */
+   }
+   
+   .btn-primary:hover{
+     transform: translateY(2px);
+     box-shadow: 0 4px 0 #7a0d13;
+     /* При наведении кнопка визуально "проседает" вниз — как будто её нажали */
+   }
+   
+   .btn-ghost{
+     border: 1.5px solid rgba(242,237,228,0.35);
+     color: var(--cream);
+     /* Прозрачная кнопка с рамкой (второстепенное действие — "Écrire un email") */
+   }
+   
+   .btn-ghost:hover{
+     border-color: var(--red-bright);
+     color: var(--red-bright);
+   }
+   
+   .wkc-badge{
+     position:absolute;
+     right: 7vw;
+     bottom: 8%;
+     z-index:2;
+     display:flex;
+     align-items:center;
+     gap:12px;
+     background: rgba(10,10,10,0.55);
+     border: 1px solid rgba(242,237,228,0.25);
+     padding: 10px 18px;
+     border-radius: 999px;   /* очень большое скругление = форма "таблетки" */
+     backdrop-filter: blur(4px);
+     /* Бейдж "Affilié World Kickboxing Council" в правом нижнем углу hero-блока */
+   }
+   
+   .wkc-badge .dot{
+     width:8px; height:8px;
+     border-radius:50%;
+     background: var(--red-bright);
+     /* Маленькая красная точка-индикатор рядом с текстом бейджа */
+   }
+   
+   .wkc-badge span{
+     font-size:0.72rem;
+     letter-spacing:0.1em;
+     text-transform:uppercase;
+     font-weight:600;
+     color: rgba(242,237,228,0.85);
+   }
+   
+   @media (max-width:900px){
+     .wkc-badge{ display:none; }
+     /* На планшетах/телефонах бейдж скрывается, чтобы не перекрывать текст */
+   }
+   
+   
+   /* ================================================================
+      БЕГУЩАЯ СТРОКА (MARQUEE)
+      ================================================================ */
+   
+   .marquee{
+     background: var(--red-bright);
+     color: var(--black);
+     overflow:hidden;        /* прячет часть текста, уезжающую за пределы блока */
+     white-space: nowrap;    /* текст не переносится на новую строку */
+     padding: 12px 0;
+     border-top: 3px solid var(--black);
+     border-bottom: 3px solid var(--black);
+     /* Красная полоса на всю ширину экрана с бегущими словами */
+   }
+   
+   .marquee-track{
+     display:inline-block;
+     animation: scroll 22s linear infinite;
+     /* Анимация "scroll" (описана ниже) длится 22 секунды,
+        движение равномерное (linear), повторяется бесконечно (infinite) */
+     font-family:'Anton', sans-serif;
+     text-transform:uppercase;
+     font-size: 1rem;
+     letter-spacing: 0.08em;
+   }
+   
+   .marquee-track span{
+     margin: 0 28px;
+     /* Отступы между словами ★ KICKBOXING ★ BOXE ANGLAISE и т.д. */
+   }
+   
+   @keyframes scroll{
+     from{ transform: translateX(0);}
+     to{ transform: translateX(-50%);}
+     /* Описание самой анимации: строка сдвигается влево ровно на половину
+        своей ширины. Так как в HTML слова продублированы дважды,
+        в момент "to" вторая копия текста встаёт точно на место первой —
+        создаётся иллюзия бесконечного движения без видимого разрыва */
+   }
+   
+   
+   /* ================================================================
+      ОБЩИЕ СТИЛИ ДЛЯ СЕКЦИЙ (about, coach, contact)
+      ================================================================ */
+   
+   section{
+     padding: 110px 6vw;
+     position:relative;
+     /* Одинаковые отступы для каждого крупного блока страницы */
+   }
+   
+   .section-head{
+     display:flex;
+     align-items:baseline;
+     gap:18px;
+     margin-bottom: 50px;
+     /* Заголовок секции + номер (01, 02) в один ряд */
+   }
+   
+   .section-num{
+     font-family:'Anton',sans-serif;
+     color: var(--red);
+     font-size:1rem;
+     letter-spacing:0.1em;
+   }
+   
+   .section-title{
+     font-size: clamp(2rem, 4vw, 3.2rem);
+   }
+   
+   
+   /* ================================================================
+      СЕКЦИЯ "О КЛУБЕ" (ABOUT)
+      ================================================================ */
+   
+   .about{
+     background: var(--black-2);   /* чуть светлее основного чёрного фона */
+     border-top: 1px solid rgba(232,32,44,0.15);
+     border-bottom: 1px solid rgba(232,32,44,0.15);
+     /* Тонкие красноватые линии сверху и снизу секции — визуально отделяют её */
+   }
+   
+   .about-grid{
+     display:grid;
+     grid-template-columns: 1.1fr 0.9fr;
+     /* Сетка на 2 колонки: левая чуть шире (1.1) правой (0.9) */
+     gap: 60px;
+     align-items:start;
+   }
+   
+   @media (max-width:860px){
+     .about-grid{ grid-template-columns: 1fr; }
+     /* На узких экранах колонки складываются в одну (друг под другом) */
+   }
+   
+   .about p{
+     font-size: 1.05rem;
+     line-height: 1.85;      /* большой межстрочный интервал — легче читать */
+     color: rgba(242,237,228,0.8);
+     margin-bottom: 20px;
+   }
+   
+   .about p strong{
+     color: var(--cream);
+     /* Жирный текст внутри абзаца (выделенная фраза) полностью непрозрачный */
+   }
+   
+   .pillar-list{
+     display:flex;
+     flex-direction:column;
+     gap: 0;
+     border-top: 1px solid rgba(242,237,228,0.15);
+     /* Список из трёх "преимуществ" — колонка блоков с линией сверху */
+   }
+   
+   .pillar{
+     display:flex;
+     gap:18px;
+     padding: 22px 0;
+     border-bottom: 1px solid rgba(242,237,228,0.15);
+     /* Каждый пункт списка отделён тонкой линией снизу */
+   }
+   
+   .pillar .mark{
+     font-family:'Anton',sans-serif;
+     color: var(--red-bright);
+     font-size: 1.4rem;
+     flex-shrink:0;           /* номер (01, 02, 03) не сжимается на узких экранах */
+     width: 34px;
+   }
+   
+   .pillar h4{
+     font-size: 1rem;
+     letter-spacing:0.03em;
+     margin-bottom:6px;
+     text-transform:uppercase;
+   }
+   
+   .pillar p{
+     font-size:0.92rem;
+     color: rgba(242,237,228,0.65);
+     line-height:1.6;
+     margin:0;
+   }
+   
+   
+   /* ================================================================
+      СЕКЦИЯ "ТРЕНЕР" (COACH)
+      ================================================================ */
+   
+   .coach{
+     display:grid;
+     grid-template-columns: 0.55fr 1fr;
+     /* Левая колонка (фото) уже, правая (текст) шире */
+     gap: 60px;
+     align-items:center;
+   }
+   
+   @media (max-width:860px){
+     .coach{ grid-template-columns:1fr; }
+   }
+   
+   .coach-frame{
+     position:relative;
+     aspect-ratio: 1;         /* квадратная рамка (ширина = высота) */
+     border: 2px solid var(--red);
+     display:flex;
+     align-items:center;
+     justify-content:center;
+     background: var(--black-2);
+   }
+   
+   .coach-frame img{
+     width: 78%;
+     filter: drop-shadow(0 12px 30px rgba(0,0,0,0.6));
+     /* Фото/логотип тренера с мягкой тенью под ним */
+   }
+   
+   .coach-frame::before{
+     content:'';
+     position:absolute;
+     top:14px; left:14px; right:-14px; bottom:-14px;
+     border: 2px solid rgba(232,32,44,0.4);
+     z-index:-1;
+     /* Вторая рамка со смещением — создаёт эффект "двойной обводки" за фото */
+   }
+   
+   .coach-copy .role{
+     color: var(--red-bright);
+     font-weight:700;
+     font-size:0.8rem;
+     letter-spacing:0.14em;
+     text-transform:uppercase;
+     margin-bottom:14px;
+     display:block;
+     /* Надпись "Entraîneur" над именем тренера */
+   }
+   
+   .coach-copy h3.display{
+     font-size: clamp(2rem, 4vw, 3rem);
+     margin-bottom: 20px;
+   }
+   
+   .coach-copy p{
+     color: rgba(242,237,228,0.75);
+     line-height:1.8;
+     font-size:1.02rem;
+     max-width: 560px;
+   }
+   
+   .coach-tags{
+     display:flex;
+     flex-wrap:wrap;
+     gap:10px;
+     margin-top: 26px;
+     /* Ряд тегов: Kickboxing / Boxe Anglaise / WKC / Tous niveaux */
+   }
+   
+   .coach-tags span{
+     font-size:0.72rem;
+     letter-spacing:0.08em;
+     text-transform:uppercase;
+     font-weight:700;
+     padding: 8px 14px;
+     border: 1px solid rgba(242,237,228,0.25);
+     /* Каждый тег — небольшая "таблетка" с рамкой */
+   }
+   
+   
+   /* ================================================================
+      СЕКЦИЯ "КОНТАКТЫ" (CONTACT)
+      ================================================================ */
+   
+   .contact{
+     background: linear-gradient(180deg, var(--black) 0%, var(--black-2) 100%);
+     /* Плавный переход фона сверху вниз: от чёрного к чуть более светлому */
+     text-align:center;
+     padding-bottom: 60px;
+   }
+   
+   .contact .section-title{
+     max-width: 720px;
+     margin: 0 auto 18px;
+     /* margin: 0 auto — центрирует блок по горизонтали */
+   }
+   
+   .contact .lead{
+     color: rgba(242,237,228,0.7);
+     max-width: 520px;
+     margin: 0 auto 46px;
+     line-height:1.7;
+   }
+   
+   .contact-cards{
+     display:grid;
+     grid-template-columns: repeat(2, minmax(240px, 340px));
+     /* 2 колонки, каждая от 240px до 340px шириной */
+     gap: 20px;
+     justify-content:center;
+     max-width: 720px;
+     margin: 0 auto;
+   }
+   
+   @media (max-width:600px){
+     .contact-cards{ grid-template-columns: 1fr; }
+     /* На телефонах карточки WhatsApp/Email складываются одна под другой */
+   }
+   
+   .ccard{
+     background: var(--black-2);
+     border: 1px solid rgba(242,237,228,0.15);
+     padding: 30px 26px;
+     text-align:left;
+     transition: border-color .2s, transform .2s;
+     /* Карточка-кнопка контакта */
+   }
+   
+   .ccard:hover{
+     border-color: var(--red-bright);
+     transform: translateY(-3px);
+     /* При наведении карточка слегка "приподнимается" и рамка становится красной */
+   }
+   
+   .ccard .label{
+     font-size:0.7rem;
+     letter-spacing:0.12em;
+     text-transform:uppercase;
+     color: var(--red-bright);
+     font-weight:700;
+     margin-bottom: 12px;
+     display:block;
+     /* Маленькая подпись "WhatsApp" / "Email" над самим значением */
+   }
+   
+   .ccard .value{
+     font-family:'Anton',sans-serif;
+     font-size: 1.3rem;
+     letter-spacing:0.01em;
+     word-break: break-word;
+     /* Сам номер телефона / email крупным шрифтом.
+        word-break — чтобы длинный email не "вылезал" за пределы карточки */
+   }
+   
+   
+   /* ================================================================
+      ПОДВАЛ САЙТА (FOOTER)
+      ================================================================ */
+   
+   footer{
+     padding: 40px 6vw;
+     display:flex;
+     align-items:center;
+     justify-content:space-between;  /* логотип слева, копирайт справа */
+     border-top: 1px solid rgba(242,237,228,0.1);
+     font-size:0.8rem;
+     color: rgba(242,237,228,0.5);
+     flex-wrap:wrap;
+     gap: 14px;
+   }
+   
+   footer .brand{
+     display:flex;
+     align-items:center;
+     gap:10px;
+   }
+   
+   footer img{
+     height:26px; width:26px;
+     border-radius:50%;
+     object-fit:cover;
+   }
+   
+   
+   /* ================================================================
+      ПРОЧЕЕ
+      ================================================================ */
+   
+   ::selection{
+     background: var(--red-bright);
+     color: #fff;
+     /* Цвет выделения текста мышкой (когда пользователь выделяет текст на сайте) */
+   }
+   
+   @media (prefers-reduced-motion: reduce){
+     .marquee-track{ animation: none; }
+     html{ scroll-behavior:auto; }
+     /* Если у пользователя в настройках ОС включено "уменьшить анимацию"
+        (например, из-за укачивания/эпилепсии) — отключаем бегущую строку
+        и плавную прокрутку. Это забота о доступности сайта */
+   }

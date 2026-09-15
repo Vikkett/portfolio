@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services — Mille et une petites choses</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/services.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="nav-bar">
+      <div class="logo">Mille et une petites choses</div>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="gallery-title">Mes Réalisations</h1>
+      <p class="gallery-subtitle">Faites défiler pour explorer mes travaux</p>
+
+      <div class="horizontal-gallery">
+        <div class="scroll-container">
+          <img src="../img/bathroom.JPG"      alt="Rénovation de salle de bain moderne" />
+          <img src="../img/clearStairs.JPG"   alt="Escaliers propres" />
+          <img src="../img/doneStairs.JPG"    alt="Escaliers terminés" />
+          <img src="../img/garagePomp.JPG"    alt="Pompe de garage" />
+          <img src="../img/house.JPG"         alt="Maison" />
+          <img src="../img/nearDoor.JPG"      alt="Près de la porte" />
+          <img src="../img/pomp.JPG"          alt="Pompe" />
+          <img src="../img/proces.JPG"        alt="Travaux en cours avec des pierres" />
+          <img src="../img/process.JPG"       alt="Travaux en cours" />
+          <img src="../img/redVent.JPG"       alt="Aération rouge" />
+          <img src="../img/roof.JPG"          alt="Toiture" />
+          <img src="../img/shower.JPG"        alt="Douche" />
+          <img src="../img/sideStairs.JPG"    alt="Escaliers latéraux" />
+          <img src="../img/solar.JPG"         alt="Panneaux solaires" />
+          <img src="../img/stairs.JPG"        alt="Escaliers" />
+          <img src="../img/tiles.JPG"         alt="Carrelage" />
+          <img src="../img/toilet.JPG"        alt="Toilettes" />
+          <img src="../img/twoPomp.JPG"       alt="Deux pompes" />
+          <img src="../img/vent.JPG"          alt="Ventilation" />
+          <img src="../img/whitePomp.JPG"     alt="Pompe blanche" />
+          <img src="../img/wholeBathroom.JPG" alt="Salle de bain complète" />
+          <img src="../img/wholeDoor.JPG"     alt="Porte entière" />
+          <img src="../img/wholeWindow.JPG"   alt="Fenêtre entière" />
+          <img src="../img/windowPro.JPG"     alt="Fenêtre professionnelle" />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 <span>Construction Fiable</span> &amp; Services à Domicile — Tous droits réservés.
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-content">
+      <span id="lightbox-close">&times;</span>
+      <img id="lightbox-img" src="" alt="Image agrandie" />
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    // ── Lightbox ──
+    const lightbox        = document.getElementById('lightbox');
+    const lightboxImg     = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose   = document.getElementById('lightbox-close');
+    const overlay         = document.querySelector('.lightbox-overlay');
+
+    document.querySelectorAll('.scroll-container img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = img.alt;
+        lightbox.classList.add('lightbox-visible');
+      });
+    });
+
+    const closeLightbox = () => lightbox.classList.remove('lightbox-visible');
+    lightboxClose.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ── Drag-to-scroll ──
+    const sc = document.querySelector('.scroll-container');
+    let isDown = false, startX, scrollLeft;
+
+    sc.addEventListener('mousedown',  e => { isDown = true; startX = e.pageX - sc.offsetLeft; scrollLeft = sc.scrollLeft; });
+    sc.addEventListener('mouseleave', () => { isDown = false; });
+    sc.addEventListener('mouseup',    () => { isDown = false; });
+    sc.addEventListener('mousemove',  e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x    = e.pageX - sc.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      sc.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+</body>
+</html>

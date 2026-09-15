@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!-- Указывает браузеру, что это документ HTML5 -->
+<html lang="fr">
+<!-- lang="fr" — язык страницы французский (важно для SEO и скринридеров) -->
+
+<head>
+  <!-- ================= СЛУЖЕБНАЯ ИНФОРМАЦИЯ СТРАНИЦЫ ================= -->
+
+  <!-- Кодировка UTF-8: нужна, чтобы корректно отображались французские буквы с акцентами (é, è, à, ç и т.д.) -->
+  <meta charset="UTF-8">
+  
+
+  <!-- Делает сайт адаптивным (responsive): на телефоне ширина страницы будет равна ширине экрана телефона, а не "сжатой" версией десктопа -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+  <!-- Подключает отдельный файл стилей home.css. Все цвета, шрифты, отступы, анимации — там, а не в этом файле -->
+  <link rel="stylesheet" href="../box/home.css">
+  
+
+  <!-- Текст, который виден во вкладке браузера и в результатах Google -->
+  <title>CKBGL — Club de Kickboxing et de Boxe du Grand Lausanne</title>
+  
+</head>
+
+<body>
+  <!-- ================= ШАПКА / МЕНЮ САЙТА ================= -->
+
+  <nav>
+    <!-- <nav> — блок навигации (меню) вверху сайта -->
+
+    <div class="brand">
+      <!-- Логотип клуба слева -->
+      <!-- alt — текст, который покажется, если картинка не загрузится (и его читают скринридеры для незрячих пользователей) -->
+      <img src="../box/logo.jpg" alt="CKBGL logo">
+      
+      <!-- Название клуба рядом с логотипом -->
+      <span class="display" style="font-size:1rem;">CKBGL</span>
+      
+    </div>
+      <!-- Ссылки меню. #about, #coach, #contact — это "якоря": клик по ним плавно прокручивает страницу к блоку с соответствующим id, БЕЗ перехода на другую страницу -->
+    <div class="links">
+
+      <a href="#about">Le Club</a>
+      <a href="#coach">Entraîneur</a>
+      <a href="#contact">Contact</a>
+    </div>
+<!-- Кнопка справа в меню: клик открывает чат WhatsApp с этим номером -->
+    <a href="https://wa.me/41797262953" class="btn btn-primary" style="padding:10px 18px; font-size:0.72rem;">
+      WhatsApp
+    </a>
+    
+  </nav>
+
+  <!-- ================= ГЛАВНЫЙ ЭКРАН (HERO) ================= -->
+
+  <!-- Первый экран, который видит посетитель, открыв сайт -->
+  <header class="hero">
+    
+ <!-- Пустой div — используется только для декоративного элемента (диагональная линия/фон), рисуется через CSS -->
+    <div class="hero-slash"></div>
+   
+
+    <div class="hero-inner">
+
+      <!-- Маленькая надпись над заголовком. &amp; — это код символа "&" (в HTML его нельзя писать напрямую) -->
+      <div class="eyebrow">Grand Lausanne · Groupe &amp; Individuel</div>
+      
+
+      <!-- Главный заголовок сайта. <br> — принудительный перенос строки. <span class="accent"> — выделяет слово "boxing" другим цветом (акцентом) -->
+      <h1 class="display">Boxe &amp;<br>Kick<span class="accent">boxing</span></h1>
+      
+
+      <p class="hero-sub">
+        <!-- Краткое описание клуба под заголовком -->
+        Club de Kickboxing et de Boxe Anglaise du Grand Lausanne.
+        Entraînement pour tous les niveaux, encadré par un coach
+        affilié au World Kickboxing Council.
+      </p>
+      
+
+      <!-- CTA = Call To Action, "кнопки призыва к действию" -->
+      <div class="hero-cta">
+        
+        <!-- Кнопка-телефон: открывает WhatsApp -->
+        <a href="https://wa.me/41797262953" class="btn btn-primary">
+          +41 79 726 29 53
+        </a>
+        
+
+        <!-- Кнопка "Написать email": открывает почтовую программу пользователя с уже заполненным адресом получателя -->
+        <a href="mailto:vadym.pikiner@gmail.com" class="btn btn-ghost">
+          Écrire un email
+        </a>
+        
+      </div>
+
+    </div>
+
+    <!-- Значок-бейдж об аффилиации с World Kickboxing Council -->
+    <div class="wkc-badge">
+      
+      <!-- Маленькая цветная точка (декор) -->
+      <span class="dot"></span>
+      
+      <span>Affilié World Kickboxing Council</span>
+    </div>
+
+  </header>
+
+  <!-- ================= БЕГУЩАЯ СТРОКА (MARQUEE) ================= -->
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <!-- Слова повторяются ДВАЖДЫ подряд — это специальный приём:
+           CSS-анимация двигает эту строку влево, и когда первая копия
+           "уезжает" за экран, вторая копия как раз занимает её место,
+           создавая иллюзию бесконечного движения без разрывов -->
+      <span>★ KICKBOXING</span><span>★ BOXE ANGLAISE</span><span>★ GRAND LAUSANNE</span><span>★ WKC</span>
+      <span>★ KICKBOXING</span><span>★ BOXE ANGLAISE</span><span>★ GRAND LAUSANNE</span><span>★ WKC</span>
+    </div>
+  </div>
+
+  <!-- ================= СЕКЦИЯ "О КЛУБЕ" ================= -->
+
+  <!-- id="about" — сюда ведёт ссылка "Le Club" из меню -->
+  <section class="about" id="about">
+    
+
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <!-- Номер секции (просто дизайнерский элемент) -->
+      <h2 class="section-title display">Le Club</h2>
+    </div>
+
+    <!-- Сетка на 2 колонки: текст слева, список преимуществ справа (сама сетка настроена в CSS через display:grid) -->
+    <div class="about-grid">
+      
+
+      <div>
+        <!-- Левая колонка: три абзаца текста о клубе -->
+        <p><strong>Comment pouvons-nous vous aider, mes amis ?!</strong>
+          Nous vous invitons à une formation de groupe gratuite pour les
+          enfants et les adultes issus de familles à faibles revenus,
+          de familles migrantes.</p>
+
+        <p>Les cours avec nous sont une excellente occasion non seulement
+          d'améliorer votre condition physique, mais aussi de rencontrer
+          de nouveaux amis, de vous soutenir mutuellement, d'apprendre à
+          vous intégrer dans n'importe quelle société et de surmonter
+          ensemble les difficultés psychologiques.</p>
+
+        <p>Avançons ensemble vers un mode de vie sain et atteignons de
+          nouveaux sommets ! Venez rejoindre notre équipe sympathique !</p>
+      </div>
+
+      <!-- Правая колонка: список из трёх "столпов"/преимуществ -->
+      <div class="pillar-list">
+        
+
+        <div class="pillar">
+          <span class="mark">01</span>
+          <div>
+            <h4>Formation gratuite</h4>
+            <p>Pour les enfants et adultes de familles à faibles revenus ou migrantes.</p>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <span class="mark">02</span>
+          <div>
+            <h4>Groupe &amp; individuel</h4>
+            <p>Cours adaptés à votre rythme, seul ou en équipe.</p>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <span class="mark">03</span>
+          <div>
+            <h4>Communauté</h4>
+            <p>Rencontrez de nouveaux amis et soutenez-vous mutuellement.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= СЕКЦИЯ "ТРЕНЕР" ================= -->
+
+  <!-- id="coach" — сюда ведёт ссылка "Entraîneur" из меню -->
+  <section class="coach" id="coach">
+    
+
+    <div class="coach-frame">
+      <!-- ⚠️ Сейчас здесь стоит тот же файл logo.jpg, что и в шапке -->
+      <img src="../box/logo.jpg" alt="CKBGL">
+      
+    </div>
+
+    <div class="coach-copy">
+      <!-- "Entraîneur" = "Тренер" (роль/должность) -->
+      <span class="role">Entraîneur</span>
+
+      <!-- Имя тренера -->
+      <h3 class="display">Vadim Pikiner</h3>
+      
+
+      <p>Entraîneur de kickboxing et de boxe, affilié au World Kickboxing
+        Council (WKC). Vadim encadre les entraînements de groupe et
+        individuels pour tous les âges et tous les niveaux, dans un
+        esprit d'entraide et de progression.</p>
+
+      <!-- Теги-ярлычки с направлениями тренера -->
+      <div class="coach-tags">
+        
+        <span>Kickboxing</span>
+        <span>Boxe Anglaise</span>
+        <span>WKC</span>
+        <span>Tous niveaux</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= СЕКЦИЯ "КОНТАКТЫ" ================= -->
+
+  <!-- id="contact" — сюда ведёт ссылка "Contact" из меню -->
+  <section class="contact" id="contact">
+    
+
+    <div class="section-head" style="justify-content:center;">
+      <span class="section-num">02</span>
+      <h2 class="section-title display">Contact</h2>
+    </div>
+
+    <p class="lead">
+      Une question, envie de rejoindre un cours d'essai ?
+      Écrivez-moi sur WhatsApp ou par email.
+    </p>
+
+    <!-- Две карточки-кнопки с контактами -->
+    <div class="contact-cards">
+      
+
+      <a href="https://wa.me/41797262953" class="ccard">
+        <span class="label">WhatsApp</span>
+        <span class="value">+41 79 726 29 53</span>
+      </a>
+
+      <a href="mailto:vadym.pikiner@gmail.com" class="ccard">
+        <span class="label">Email</span>
+        <span class="value" style="font-size:1.05rem;">vadym.pikiner@gmail.com</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= ПОДВАЛ САЙТА (FOOTER) ================= -->
+
+  <footer>
+    <div class="brand">
+      <img src="../box/logo.jpg" alt="CKBGL logo">
+      <span>Club de Kickboxing et de Boxe du Grand Lausanne</span>
+    </div>
+    <!-- Строка авторских прав внизу страницы -->
+    <span>© 2026 CKBGL — Vadim Pikiner</span>
+
+  </footer>
+
+</body>
+</html>
