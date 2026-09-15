@@ -1,0 +1,252 @@
+/* ============================================================
+   CONTACT PAGE — matches site redesign
+   ============================================================ */
+
+   @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,900&family=Inter:wght@400;500;600&display=swap');
+
+   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+   
+   :root {
+     --void:     #0B0F1A;
+     --steel:    #1C2236;
+     --steel-lt: #242b42;
+     --gold:     #F7B500;
+     --ember:    #FF6B1A;
+     --cream:    #E8E0D0;
+     --white:    #FFFFFF;
+     --text-dim: #9AA3B8;
+     --error:    #ff4d4d;
+     --success:  #22c55e;
+   }
+   
+   html { scroll-behavior: smooth; }
+   
+   body {
+     font-family: 'Inter', Arial, sans-serif;
+     background-color: var(--void);
+     color: var(--cream);
+     overflow-x: hidden;
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+   }
+   
+   /* ── NAV ── */
+   .nav-bar {
+     position: sticky;
+     top: 0;
+     z-index: 100;
+     background: rgba(11,15,26,0.85);
+     backdrop-filter: blur(16px);
+     -webkit-backdrop-filter: blur(16px);
+     border-bottom: 1px solid rgba(247,181,0,0.2);
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 0.9rem 2.5rem;
+   }
+   
+   .logo {
+     font-family: 'Barlow Condensed', sans-serif;
+     font-weight: 900;
+     font-size: 1.35rem;
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+     background: linear-gradient(90deg, var(--gold), var(--ember));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+   }
+   
+   .nav-links a {
+     color: var(--text-dim);
+     text-decoration: none;
+     margin-left: 2rem;
+     font-size: 0.9rem;
+     font-weight: 600;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     transition: color 0.25s;
+   }
+   
+   .nav-links a.active,
+   .nav-links a:hover { color: var(--gold); }
+   
+   /* ── MAIN ── */
+   main { flex: 1; }
+   
+   .main-content {
+     max-width: 680px;
+     margin: 0 auto;
+     padding: 5rem 2rem 7rem;
+     position: relative;
+   }
+   
+   /* dot grid background */
+   .main-content::before {
+     content: '';
+     position: fixed;
+     inset: 0;
+     background-image: radial-gradient(rgba(247,181,0,0.08) 1px, transparent 1px);
+     background-size: 32px 32px;
+     pointer-events: none;
+     z-index: 0;
+   }
+   
+   /* ── TITLE ── */
+   .contact-title {
+     font-family: 'Barlow Condensed', sans-serif;
+     font-weight: 900;
+     font-size: clamp(3rem, 8vw, 5.5rem);
+     text-transform: uppercase;
+     letter-spacing: -0.01em;
+     line-height: 0.95;
+     color: var(--white);
+     text-shadow:
+       2px 2px 0 #c49200,
+       4px 4px 0 #9a7100,
+       6px 6px 0 #6e5100,
+       8px 8px 14px rgba(0,0,0,0.7);
+     margin-bottom: 0.5rem;
+     position: relative;
+     z-index: 1;
+   }
+   
+   .contact-eyebrow {
+     color: var(--text-dim);
+     font-size: 0.95rem;
+     margin-bottom: 3rem;
+     position: relative;
+     z-index: 1;
+   }
+   
+   .contact-eyebrow a {
+     color: var(--gold);
+     text-decoration: none;
+     font-weight: 600;
+     transition: color 0.2s;
+   }
+   
+   .contact-eyebrow a:hover { color: var(--ember); }
+   
+   /* ── CONTACT SECTION ── */
+   .contact-section {
+     position: relative;
+     z-index: 1;
+   }
+   
+   /* ── FORM ── */
+   .contact-form {
+     background: var(--steel);
+     border: 1px solid rgba(247,181,0,0.15);
+     border-radius: 16px;
+     padding: 2.5rem;
+     /* 3D card */
+     box-shadow:
+       0 8px 0 rgba(0,0,0,0.45),
+       0 20px 60px rgba(0,0,0,0.5);
+     display: flex;
+     flex-direction: column;
+     gap: 1.4rem;
+   }
+   
+   .contact-form label {
+     display: block;
+     font-size: 0.8rem;
+     font-weight: 700;
+     letter-spacing: 0.1em;
+     text-transform: uppercase;
+     color: var(--gold);
+     margin-bottom: 0.4rem;
+   }
+   
+   .contact-form input,
+   .contact-form textarea {
+     width: 100%;
+     background: var(--steel-lt);
+     border: 1px solid rgba(247,181,0,0.18);
+     border-radius: 8px;
+     color: var(--white);
+     font-family: 'Inter', sans-serif;
+     font-size: 0.97rem;
+     padding: 0.8rem 1rem;
+     outline: none;
+     transition: border-color 0.22s, box-shadow 0.22s;
+     resize: vertical;
+   }
+   
+   .contact-form input::placeholder,
+   .contact-form textarea::placeholder { color: var(--text-dim); }
+   
+   .contact-form input:focus,
+   .contact-form textarea:focus {
+     border-color: var(--gold);
+     box-shadow:
+       0 0 0 3px rgba(247,181,0,0.15),
+       inset 0 1px 3px rgba(0,0,0,0.3);
+   }
+   
+   /* ── SUBMIT BUTTON ── */
+   .btn-primary {
+     align-self: flex-start;
+     display: inline-flex;
+     align-items: center;
+     gap: 0.5rem;
+     background: linear-gradient(135deg, var(--gold) 0%, var(--ember) 100%);
+     color: var(--void);
+     padding: 0.85rem 2rem;
+     border: none;
+     border-radius: 8px;
+     font-family: 'Inter', sans-serif;
+     font-weight: 700;
+     font-size: 0.95rem;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     cursor: pointer;
+     /* 3D press */
+     box-shadow:
+       0 4px 0 #9a5c00,
+       0 6px 20px rgba(247,181,0,0.3);
+     transition: transform 0.15s, box-shadow 0.15s;
+     position: relative;
+     top: 0;
+   }
+   
+   .btn-primary:hover {
+     transform: translateY(-3px);
+     box-shadow:
+       0 7px 0 #9a5c00,
+       0 14px 30px rgba(247,181,0,0.4);
+   }
+   
+   .btn-primary:active {
+     transform: translateY(3px);
+     box-shadow:
+       0 1px 0 #9a5c00,
+       0 2px 8px rgba(247,181,0,0.15);
+   }
+   
+   /* ── FOOTER ── */
+   footer {
+     background: var(--steel);
+     border-top: 1px solid rgba(247,181,0,0.15);
+     color: var(--text-dim);
+     padding: 1.5rem 2rem;
+     text-align: center;
+     font-size: 0.85rem;
+     letter-spacing: 0.05em;
+   }
+   
+   footer span { color: var(--gold); }
+   
+   /* ── RESPONSIVE ── */
+   @media (max-width: 600px) {
+     .main-content { padding: 3rem 1.2rem 5rem; }
+     .nav-bar { padding: 0.8rem 1.2rem; }
+     .contact-form { padding: 1.6rem 1.2rem; }
+     .btn-primary { width: 100%; justify-content: center; }
+   }
+   
+   @media (prefers-reduced-motion: reduce) {
+     * { transition: none !important; }
+   }

@@ -125,18 +125,16 @@
           </div>
         </div>
 
-        <div class="project-card">
+        
+        <a href="/portfolio/box/index.html" class="project-card">
           <span class="project-tag">
-            3D · WebGL
+            Fitness & Boxing
           </span>
 
-          <h3>Interactive 3D Web Component</h3>
+          <h3>Boxing Coach</h3>
 
           <p>
-            Built interactive 3D elements rendered directly
-            in the browser using WebGL and Three.js. Focused
-            on performance optimisation and delivering smooth,
-            visually engaging experiences.
+            Designed and developed a modern personal website for a boxing coach to present his training, experience, and services.
           </p>
 
           <div class="project-tech">
@@ -144,20 +142,21 @@
             <span class="tech-pill">WebGL</span>
             <span class="tech-pill">JavaScript</span>
           </div>
-        </div>
+        </a>
 
-        <div class="project-card">
+        
+
+        <a href="/portfolio/construction/html/index.html" class="project-card">
           <span class="project-tag">
             Live · Client Work
           </span>
 
-          <h3>Live Website</h3>
+          <h3>Construction Website</h3>
 
           <p>
-            Designed, built, and deployed a fully functional
-            website that's been online since 2023. Handles
-            ongoing maintenance, performance updates, and
-            feature iterations post-launch.
+            Designed, built, and deployed a professional website for a
+            construction company. The website has been live since 2023,
+            with ongoing maintenance, improvements, and updates.
           </p>
 
           <div class="project-tech">
@@ -166,11 +165,9 @@
             <span class="tech-pill">JavaScript</span>
             <span class="tech-pill">Deployment</span>
           </div>
+        </a>
 
-          <a href="#contact" class="project-link">
-            Ask me about it →
-          </a>
-        </div>
+
 
         <div class="project-card">
           <span class="project-tag">
