@@ -103,7 +103,7 @@
 
       <div class="projects-grid">
 
-        <div class="project-card">
+        <a href="/portfolio/outfit/html/outfit.html" class="project-card">
           <span class="project-tag">
             AI · Full-Stack
           </span>
@@ -123,7 +123,7 @@
             <span class="tech-pill">SQL</span>
             <span class="tech-pill">CSS3</span>
           </div>
-        </div>
+        </a>
 
         
         <a href="/portfolio/box/index.html" class="project-card">
@@ -165,8 +165,6 @@
           </div>
         </a>
 
-
-
         <div class="project-card">
           <span class="project-tag">
             CRM · Enterprise
@@ -188,7 +186,25 @@
           </div>
         </div>
 
+        <a href="/portfolio/UI_Designs/html/ui_designs.html" class="project-card">
+        <span class="project-tag">
+          UI Designs
+        </span>
+        <h3>Interface Showcase</h3>
+
+        <p>
+          A curated collection of original interface designs created to explore
+          modern layouts, visual systems, responsive experiences, and interactive UI.
+        </p>
+
+        <div class="project-tech">
+          <span class="tech-pill">HTML</span>
+          <span class="tech-pill">CSS</span>
+          <span class="tech-pill">JavaScript</span>
+        </div>
+      </a>
       </div>
+
     </section>
 
     <hr class="full-divider">
